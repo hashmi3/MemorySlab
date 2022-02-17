@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "mull.h"
 #define MAXNODES 100
+
+// List test code for testing
+// mullinit, mulloc and mullfree from linked library
+
 
 typedef struct AppNode{
     long data1;
@@ -68,7 +71,6 @@ int main(){
     printf("Valx=%d\n",x);
     printf("Size cur_app %ld BEGIN ! \n,", sizeof(*curr_app));
     
-    //q = sbrk(0);
 
     id = mullinit(sizeof(*curr_app )) ; //change 2nd arg to 32 
     printf("Returned Id: %d\n",id); 

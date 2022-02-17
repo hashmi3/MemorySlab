@@ -1,6 +1,3 @@
-//#include <stdio.h>
-//#include <stdlib.h>
-//#include <unistd.h>
 #include "mull.h"
 
 long countl = 0;
@@ -15,8 +12,6 @@ void ctest1(int *i)
 }
 
 
-//void create_tally( int id, int n_cells, int cell_size, int used_c,
-//        unsigned int used_bit){
 
 void print_tally(){
     tally * curr;
@@ -33,12 +28,10 @@ void print_tally(){
 
 tally * create_tally(int id, size_t cell_size, int n_cells){
     tally* curr;
-    //tally * new_node = (* tally) malloc(sizeof(tally));
     tally * new_node;
     int t = 1;          // to fill head->used_bit
     int * tmp;
     // check if Llist header is already malloced
-    //if (tally_created == 0){    
     if (head == NULL){ 
         //tally_created = 1;
         printf("building LinkList \n");
@@ -62,14 +55,13 @@ tally * create_tally(int id, size_t cell_size, int n_cells){
     
         head -> next = NULL;
 
-        printf("Printing PTR \n");
+        printf("Printing PTR for Reference \n");
         
         for (int i = 0; i < 5; i++){
             tmp = (head -> start_ptr)+i;
             printf("ptr : %p, val: %x\n", (head -> start_ptr)+i,~*tmp);
         }
     
-        //print_tally();  // prints entire linked list
 
     }
     else{
@@ -102,7 +94,6 @@ tally * create_tally(int id, size_t cell_size, int n_cells){
         cur -> next = new_node;
 
         printf("\nPRINTING entire list \n");
-        //print_tally();                    //EXTRA
         
     }
     return head;
@@ -177,32 +168,21 @@ void * mulloc(int id ){
 
     
 
-
-    /*for (int i =0; i < SIZELIST; i++){
-        if (cur -> cell_size == mem_cell_size[i]){
-                id_hit = i;
-        }
-    }
-    printf("id_arg: %d, id_hit: %d\n", id, id_hit);
-    */
     return ret_ptr;
 }
 
 void mullfree(void * tcur){
-    //int t;
     int found = 0;
     static int freed = 0;
     int missed = 0;
     
     static tally * cur = {0};     //last block
     if (cur == NULL){
-        //printf("> Init Tally head : %p \n", head);
         cur = head;
     }
 
     for (int i = 0; i < 2; i++){
         if (cur == NULL){
-            //printf(" \t\tGoing over Tally again from start\t");
             cur = head;
         }
         if (found == 1)
@@ -226,7 +206,6 @@ void mullfree(void * tcur){
     }
     printf("\n\nFree STATUS !!!! alreadyfreed_count: %d, Null: %d cur: %p\n", freed,missed, cur);
 
-    //printf("Blocks Freed: %ld, ptr: %p \t end:%p \n", countf, tcur, tcur+(3*16));
 
 }
 

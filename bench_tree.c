@@ -2,7 +2,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "mull.h"
+
+// Binary Tree test code for testing
+// mullinit, mulloc and mullfree from linked library
 
 #define N   100L
 /*
