@@ -13,6 +13,7 @@ void ctest1(int *i)
 
 
 
+// printing entire for logging purposes
 void print_tally(){
     tally * curr;
     curr = head;
@@ -26,31 +27,28 @@ void print_tally(){
     }
 }
 
+
 tally * create_tally(int id, size_t cell_size, int n_cells){
     tally* curr;
     tally * new_node;
     int t = 1;          // to fill head->used_bit
     int * tmp;
-    // check if Llist header is already malloced
+    // check if Llist header is already malloced    
+    // tally * head in .h
     if (head == NULL){ 
-        //tally_created = 1;
-        printf("building LinkList \n");
         
         head = sbrk(sizeof(* head));
         if (head == (void *)-1){
             printf("Error creating head tally block\n");exit(0);}
         head -> id = id;
         
-        //if (n_cells > 0){       //MAXCELLS = 32
             
         head -> tot_cell = MAXCELLS;   // starts with 1
         head -> used_c = 0L;
         head -> cell_size = cell_size;
         head -> used_bit = 0L;
-        //}
 
         // malloc the cells for this block    
-        //head -> start_ptr = sbrk(sizeof(cell_size)* MAXCELLS*3);
         head -> start_ptr = sbrk((cell_size)* MAXCELLS);
     
         head -> next = NULL;
@@ -107,7 +105,7 @@ int mullinit(size_t cell_size ){
     startPrgBrk = sbrk(0);
     printf("STart Program break: %p\n", startPrgBrk);
     // fill mem_cell_size array
-    if (head == NULL){
+    if (head == NULL){          // tally* head not created
     
         create_tally(id_count,cell_size, MAXCELLS);
         id_out = id_count;    
@@ -115,7 +113,6 @@ int mullinit(size_t cell_size ){
         id_count++;                 // dont check entire array
     }
     else{
-        //create_tally(id_count, cell_size, MAXCELLS);
         id_out = id_count;
         mem_cell_size[id_count] = cell_size; 
         id_count++;                 // dont check entire array
@@ -124,7 +121,6 @@ int mullinit(size_t cell_size ){
     return id_out;
 }
 
-//void * mulloc(int id, size_t cell_size, int n_cells){
 void * mulloc(int id ){
     int id_hit = -1;
     int t;
