@@ -3,7 +3,7 @@ A Dynamically Linked Shared Object Library for memory allocation.
 
 
 ## Test Bench
-Faor running Tree test bench
+For running Tree test bench
 run:    ./run_Clang.sh
             OR
         make runtree
